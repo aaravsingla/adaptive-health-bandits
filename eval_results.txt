@@ -1,0 +1,6 @@
+=== Evaluation Results (100 episodes) ===
+  Success Rate          : 100.0%  (reached within 0.5 of target)
+  Avg Min Distance      : 0.829   (lower = closer to target)
+  Hard Collision Rate   : 100.0%  (>5% steps in hazard)
+  Avg Cost/Step         : 0.2000
+  Avg Reward            : 71.33
