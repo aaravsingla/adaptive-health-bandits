@@ -114,12 +114,13 @@ class HRLAgent:
         )
 
         self.optimizer = optim.Adam(
-            list(self.manager.parameters()) +
-            list(self.worker.parameters()) +
-            list(self.critic.parameters()) +
-            [self.log_lagrange],
-            lr=0.0003
-        )
+    [
+        {'params': list(self.manager.parameters()), 'lr': 0.0003},
+        {'params': list(self.worker.parameters()), 'lr': 0.0003},
+        {'params': list(self.critic.parameters()), 'lr': 0.0003},
+        {'params': [self.log_lagrange], 'lr': 0.001},
+    ]
+)
 
     def select_action(self, state_t, subgoal_t):
         inputs = torch.cat([state_t, subgoal_t], dim=1)

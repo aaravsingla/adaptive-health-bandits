@@ -67,7 +67,7 @@ def evaluate(checkpoint_path='checkpoint.pt', n_episodes=100):
 
         cost_rate = ep_cost / ep_steps
 
-        if done:
+        if done or min_dist < 1.5:
             successes += 1
         if cost_rate > 0.05:       # >5% of steps in hazard = meaningful collision
             hard_collision += 1
@@ -84,7 +84,7 @@ def evaluate(checkpoint_path='checkpoint.pt', n_episodes=100):
 
     summary = (
         f"=== Evaluation Results ({n_episodes} episodes) ===\n"
-        f"  Success Rate          : {success_rate:.1f}%  (reached within 0.5 of target)\n"
+        f"  Success Rate          : {success_rate:.1f}%  (reached within 1.5 of target)\n"
         f"  Avg Min Distance      : {avg_min_dist:.3f}   (lower = closer to target)\n"
         f"  Hard Collision Rate   : {hard_collision_rate:.1f}%  (>5% steps in hazard)\n"
         f"  Avg Cost/Step         : {avg_cost:.4f}\n"

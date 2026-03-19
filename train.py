@@ -4,6 +4,7 @@ from torch.distributions import Normal
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
+import json
 
 # Local Imports
 from env import SafetyNavEnv
@@ -22,7 +23,7 @@ def train():
     reward_model = RewardModel(input_dim=6).to(device)
 
     # Hyperparameters
-    episodes   = 2000
+    episodes   = 1000
     max_steps  = 200
     gamma      = 0.99
     cost_limit = 0.1
@@ -190,10 +191,15 @@ def train():
         'reward_model': reward_model.state_dict(),
     }, 'checkpoint.pt')
     print("\nCheckpoint saved to checkpoint.pt")
-
-    # ------------------------------------------------------------------
-    # 8. Return logs for plotting (Step 4 will use these)
-    # ------------------------------------------------------------------
+    
+    with open('training_logs.json', 'w') as f:
+        json.dump({
+            'rewards' : ep_rewards,
+            'costs'   : ep_costs,
+            'lambdas' : ep_lambdas,
+            'rm_loss' : rm_loss_history,
+        }, f)
+    print("Training logs saved to training_logs.json")
     return ep_rewards, ep_costs, ep_lambdas, rm_loss_history
 
 
