@@ -1,0 +1,36 @@
+{
+  "n_users": 100,
+  "train_days": 60,
+  "eval_days": 60,
+  "n_eval_seeds": 10,
+  "master_seed": 42,
+  "engage_reward": 1.0,
+  "fatigue_penalty": 0.25,
+  "alpha": 0.5,
+  "lam": 1.0,
+  "fixed_slot": 2,
+  "results_dir": "results",
+  "policies": [
+    "fixed_evening",
+    "random",
+    "linucb_reduced",
+    "linucb_full"
+  ],
+  "slot_names": [
+    "morning_08",
+    "afternoon_13",
+    "evening_19"
+  ],
+  "eval_seed_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ]
+}
